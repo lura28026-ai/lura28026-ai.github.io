@@ -1,0 +1,22 @@
+# 后台的 GitHub 认证设置
+backend:
+  name: git-gateway # 告诉 CMS 我们要用 Netlify 的 Git Gateway
+  repo: lura28026-ai/lura28026-ai.github.io # 例如: lura28026-ai/lura28026-ai.github.io
+  branch: main # 你的仓库主分支名，通常是 main 或 master
+
+# 媒体文件（如图片）上传到哪里
+media_folder: "source/images/uploads"
+public_folder: "/images/uploads"
+
+# 内容集合，这里我们只定义“日记”
+collections:
+  - name: "post" # 集合的名字
+    label: "我的日记" # 在后台界面上显示的标签
+    folder: "source/_posts" # 告诉CMS文章应该保存在哪个文件夹
+    create: true # 允许创建新文件
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # 文件名的格式
+    fields: # 定义文章包含哪些字段
+      - {label: "标题", name: "title", widget: "string"}
+      - {label: "发布日期", name: "date", widget: "datetime"}
+      - {label: "标签", name: "tags", widget: "list", optional: true}
+      - {label: "正文", name: "body", widget: "markdown"}
